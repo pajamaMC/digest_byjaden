@@ -51,6 +51,38 @@
     overflow-x: hidden;
   }
 
+  .hero-wrapper {
+    position: relative;
+    min-height: 100vh;
+    background: linear-gradient(180deg,
+      #003095 0%,
+      #003095 28%,
+      #0050F8 55%,
+      #5FBDF7 85%,
+      #F9F9F8 100%
+    );
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-wrapper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url('/assets/stars.png') center top / cover no-repeat;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Center content at 1440px */
+  .hero-wrapper nav {
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+
   /* Scroll reveal */
   [data-reveal] {
     opacity: 0;
@@ -77,13 +109,13 @@
   }
 
   .wrap {
-    width: 100%;
+    max-width: 1440px;
     margin: 0 auto;
     padding: 0 75px;
     box-sizing: border-box;
   }
 
-  /* NAV */
+  /* NAV — dark hero variant */
   nav {
     position: sticky;
     top: 0;
@@ -91,20 +123,325 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 24px 75px;
+    padding: 20px 75px;
+    max-width: 1440px;
+    margin: 0 auto;
     width: 100%;
     box-sizing: border-box;
-    background: rgba(250, 250, 249, 0);
+    background: transparent;
     backdrop-filter: blur(0px);
-    transition: background 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+    transition: background 0.35s ease, backdrop-filter 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
     border-bottom: 1px solid transparent;
   }
 
   nav.scrolled {
-    background: rgba(250, 250, 249, 0.75);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(0,0,0,0.07);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
   }
+
+  /* Nav link colors — white on hero, black on scroll */
+  .nav-links a {
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s ease, opacity 0.2s ease;
+  }
+
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1px;
+    background: currentColor;
+    transition: width 0.25s ease;
+  }
+
+  .nav-links a:hover { opacity: 0.7; }
+  .nav-links a:hover::after { width: 100%; }
+
+  nav.scrolled .nav-links a {
+    color: #111;
+  }
+
+  nav.scrolled .nav-links a:hover {
+    opacity: 0.55;
+  }
+
+  .menu-toggle span {
+    background: #fff;
+    transition: background 0.3s ease;
+  }
+
+  nav.scrolled .menu-toggle span { background: #111; }
+
+  /* Logo white on hero, normal on scroll */
+  nav .logo { filter: brightness(0) invert(1); transition: filter 0.3s ease; }
+  nav.scrolled .logo { filter: none; }
+
+  /* Nav CTA */
+  .nav-cta {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 8px;
+    padding: 10px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    backdrop-filter: blur(8px);
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.3s ease, transform 0.2s ease;
+  }
+
+  .nav-cta:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.7);
+    transform: translateY(-1px);
+  }
+
+  nav.scrolled .nav-cta {
+    background: #111;
+    color: #fff;
+    border-color: #111;
+  }
+
+  nav.scrolled .nav-cta:hover {
+    background: #333;
+    border-color: #333;
+  }
+
+  /* HERO */
+  .hero-wrapper nav,
+  .hero-wrapper .hero {
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+  }
+
+  .hero-inner {
+    width: 100%;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 75px;
+    box-sizing: border-box;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 64px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .hero-left {
+    color: #fff;
+    min-width: 0;
+  }
+
+  .hero-form-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 20px;
+    padding: 36px;
+    backdrop-filter: blur(24px);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+    width: 100%;
+  }
+
+  .hero-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.10);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    padding: 7px 14px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.02em;
+    margin-bottom: 28px;
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-pill-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4ade80;
+    flex-shrink: 0;
+  }
+
+  .headline {
+    font-family: 'Instrument Serif', serif;
+    font-size: 64px;
+    line-height: 1.08;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 24px;
+  }
+
+  .hero-subtext {
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    font-weight: 400;
+    color: rgba(255,255,255,0.60);
+    max-width: 520px;
+    margin-bottom: 36px;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: #111;
+    border: none;
+    border-radius: 8px;
+    padding: 14px 28px;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  }
+
+  .hero-cta:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+
+  /* HERO CONTACT FORM */
+  .hero-form-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 26px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+
+  .hero-form-subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+  }
+
+  .hero-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .hero-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+
+  .hero-form input,
+  .hero-form select,
+  .hero-form textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+
+  .hero-form input::placeholder,
+  .hero-form textarea::placeholder {
+    color: rgba(255,255,255,0.3);
+  }
+
+  .hero-form input:focus,
+  .hero-form select:focus,
+  .hero-form textarea:focus {
+    border-color: rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.13);
+  }
+
+  .hero-form select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256' fill='rgba(255,255,255,0.45)'%3E%3Cpath d='M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    background-size: 14px;
+    background-color: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.85);
+  }
+
+  .hero-form select option {
+    background: #003095;
+    color: #fff;
+  }
+
+  .hero-form textarea {
+    resize: none;
+    min-height: 90px;
+  }
+
+  .hero-form-submit {
+    background: #fff;
+    color: #111;
+    border: none;
+    border-radius: 10px;
+    padding: 15px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Inter', sans-serif;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    margin-top: 4px;
+    letter-spacing: 0.01em;
+  }
+
+  .hero-form-submit:hover {
+    opacity: 0.88;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .wrap { padding: 0 24px; }
+    .hero-inner { padding: 0 24px; }
+    .nav-links { display: none; }
+    .nav-right .nav-cta { display: none; }
+    .menu-toggle { display: flex; }
+    .mobile-menu { display: flex; }
+    .hero { padding: 48px 0 64px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .headline { font-size: 40px; }
+    .hero-form-row { grid-template-columns: 1fr; }
+  }
+
+  /* OLD MEDIA STYLES (now unused) */
+  .media, .media-logo, .eyebrow { display: none; }
+
 
   .logo {
     height: 24px;
@@ -124,54 +461,6 @@
     gap: 32px;
     font-size: 15px;
     font-weight: 400;
-  }
-
-  .nav-links a {
-    color: var(--text);
-    text-decoration: none;
-    position: relative;
-    transition: color 0.2s ease;
-  }
-
-  .nav-links a::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 0;
-    height: 1px;
-    background: var(--text);
-    transition: width 0.25s ease;
-  }
-
-  .nav-links a:hover {
-    opacity: 1;
-  }
-
-  .nav-links a:hover::after {
-    width: 100%;
-  }
-
-  .nav-cta {
-    background: var(--pill-bg);
-    color: var(--pill-text);
-    border: none;
-    border-radius: 7px;
-    padding: 10px 22px;
-    font-size: 14px;
-    font-weight: 500;
-    font-family: 'Inter', sans-serif;
-    cursor: pointer;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-
-  .nav-cta:hover {
-    opacity: 0.85;
-    transform: translateY(-1px);
-  }
-
-  .nav-cta:active {
-    transform: translateY(0);
   }
 
   /* Mobile menu toggle */
@@ -239,33 +528,11 @@
   }
 
   .mobile-menu .nav-cta {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.5);
     align-self: flex-start;
     margin-top: 8px;
-  }
-
-  /* HERO */
-  .hero {
-    padding-top: 56px;
-    padding-bottom: 32px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: "";
-    position: absolute;
-    top: -200px;
-    right: -150px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(96,165,250,0.10) 0%, rgba(96,165,250,0) 70%);
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .hero .wrap {
-    position: relative;
-    z-index: 1;
   }
 
   .eyebrow {
@@ -336,24 +603,33 @@
 
   /* ABOUT */
   .about {
-    padding-bottom: 0;
-    padding-top: 60px;
+    padding: 100px 0;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
   }
 
   .about-heading {
-    font-size: 40px;
-    font-weight: 600;
+    font-family: 'Instrument Serif', serif;
+    font-size: 44px;
+    font-weight: 400;
+    color: #1B2540;
     letter-spacing: -0.01em;
-    margin-bottom: 32px;
+    line-height: 1.15;
+    margin-bottom: 28px;
   }
 
   .fill-text {
-    font-size: 20px;
-    line-height: 1.6;
+    font-size: 17px;
+    line-height: 1.7;
     font-weight: 400;
     font-family: 'Inter', sans-serif;
-    max-width: 100%;
-    margin-bottom: 24px;
+    color: var(--text);
+    margin-bottom: 20px;
   }
 
   .fill-text .word {
@@ -366,8 +642,7 @@
   }
 
   .about-cta {
-    margin-top: 8px;
-    margin-bottom: 24px;
+    margin-top: 16px;
     background: var(--pill-bg);
     color: var(--pill-text);
     border: none;
@@ -377,7 +652,8 @@
     font-weight: 500;
     font-family: 'Inter', sans-serif;
     cursor: pointer;
-    transition: opacity 0.2s ease;
+    display: inline-block;
+    transition: opacity 0.2s ease, transform 0.2s ease;
   }
 
   .about-cta:hover {
@@ -385,13 +661,27 @@
     transform: translateY(-1px);
   }
 
-  .about-cta {
-    transition: opacity 0.2s ease, transform 0.2s ease;
+  .about-image {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    max-height: 480px;
+    background: var(--line);
+    justify-self: end;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
 
   @media (max-width: 900px) {
+    .about { padding: 64px 0; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
     .about-heading { font-size: 32px; }
-    .fill-text { font-size: 17px; }
+    .about-image { aspect-ratio: 4 / 3; }
   }
 
   /* PROJECTS - sticky stack */
@@ -411,43 +701,84 @@
   .project-card-inner {
     width: 100%;
     max-width: 100%;
-    height: 576px;
+    height: 560px;
     background: #0D0D0D;
-    border-radius: 7px;
-    padding: 32px;
+    border-radius: 12px;
+    padding: 28px 28px 0;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
     color: #fff;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+  }
+
+  .project-card-inner:hover {
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  }
+
+  .project-card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-shrink: 0;
   }
 
   .project-title {
     font-family: 'Inter', sans-serif;
-    font-size: 32px;
-    font-weight: 400;
-    margin-bottom: 8px;
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 4px;
   }
 
   .project-subtitle {
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 400;
-    color: var(--muted);
-    margin-bottom: 24px;
+    color: rgba(255,255,255,0.45);
+    max-width: 480px;
+  }
+
+  .project-arrow {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-left: 16px;
+    transition: background 0.2s ease, border-color 0.2s ease;
+  }
+
+  .project-card-inner:hover .project-arrow {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.3);
+  }
+
+  .project-arrow svg {
+    width: 14px;
+    height: 14px;
+    color: rgba(255,255,255,0.7);
   }
 
   .project-media {
     width: 100%;
-    aspect-ratio: 1200 / 472;
-    border-radius: 7px;
-    overflow: hidden;
     flex: 1;
+    border-radius: 8px 8px 0 0;
+    overflow: hidden;
+    background: #1A1A1A;
+    min-height: 0;
   }
 
   .project-media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top;
     display: block;
     transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
@@ -458,14 +789,12 @@
 
   @media (max-width: 900px) {
     .project-card-inner {
-      width: 100%;
-      max-width: 100%;
       height: auto;
       min-height: 70vh;
-      padding: 20px;
+      padding: 20px 20px 0;
     }
-    .project-title { font-size: 24px; }
-    .project-media { aspect-ratio: 4 / 3; }
+    .project-title { font-size: 18px; }
+    .project-media { aspect-ratio: 4 / 3; flex: none; }
   }
 
   /* TIMELINE */
@@ -1214,8 +1543,9 @@
 </head>
 <body>
 
+<div class="hero-wrapper">
 <nav>
-  <a href="#" aria-label="Home"><img class="logo" src="/assets/logo.png" alt="Jaden Medina logo" /></a>
+  <a href="#" aria-label="Home"><img class="logo" src="/assets/byjaden.svg" alt="byJaden logo" /></a>
 
   <div class="nav-right">
     <div class="nav-links">
@@ -1225,7 +1555,6 @@
       <a href="#pricing">Pricing</a>
       <a href="#faq">FAQ</a>
     </div>
-
     <button class="nav-cta" onclick="window.location.href='#contact'">Let's Talk</button>
   </div>
 
@@ -1246,32 +1575,58 @@
 </div>
 
 <header class="hero">
-  <div class="wrap">
-    <p class="eyebrow" data-reveal>This site has been redesigned 6 times.</p>
-    <h1 class="headline" data-reveal>
-      Jaden Medina<br>
-      Designing Success Stories.
-    </h1>
+  <div class="hero-inner">
+    <div class="hero-grid">
+      <div class="hero-left" data-reveal>
+        <div class="hero-pill">
+          <span class="hero-pill-dot"></span>
+          Available for work
+        </div>
+        <h1 class="headline">Jaden Medina,<br>The website designer<br>behind winning brands.</h1>
+        <p class="hero-subtext">Jaden Medina is one of Miami's top web designers with a portfolio of stunning, high-converting websites. Whether you're based in the US, UK, or anywhere in the world, Jaden is ready to elevate your brand with a sleek, modern site. Let's start building yours today.</p>
+        <a href="#contact" class="hero-cta">Schedule A Call</a>
+      </div>
 
-    <div class="media" data-reveal>
-      <img class="bg" src="/assets/switzerland.png" alt="A man wearing a backpack and purple beanie walking through green Swiss countryside" />
-      <img class="media-logo top-left" src="/assets/oceandev.png" alt="Oceandev" />
-      <img class="media-logo top-right" src="/assets/investor.png" alt="Investor Lending Solutions" />
-      <img class="media-logo bottom-left" src="/assets/ascendbiolabs.png" alt="AscendBioLabs" />
-      <img class="media-logo bottom-right" src="/assets/helix.png" alt="Helix" />
+      <div class="hero-form-card" data-reveal>
+        <p class="hero-form-title">Start a project</p>
+        <p class="hero-form-subtitle">Tell me about what you're building.</p>
+        <form class="hero-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="hero-form-row">
+            <input type="text" name="name" placeholder="Full name" required />
+            <input type="email" name="email" placeholder="Email" required />
+          </div>
+          <select name="budget" required>
+            <option value="" disabled selected>Project budget</option>
+            <option value="10k-15k">$10,000 &ndash; $15,000</option>
+            <option value="15k-25k">$15,000 &ndash; $25,000</option>
+            <option value="25k-plus">$25,000+</option>
+          </select>
+          <textarea name="message" placeholder="Tell me about your project..." required></textarea>
+          <button type="submit" class="hero-form-submit">Send Message</button>
+        </form>
+      </div>
     </div>
   </div>
 </header>
+</div>
 
 <section class="about" id="about">
   <div class="wrap">
-    <h2 class="about-heading" data-reveal>Hey, I'm Jaden 👋</h2>
+    <div class="about-grid">
+      <div data-reveal>
+        <h2 class="about-heading">Hey, I'm Jaden. The go to website designer in Miami Florida</h2>
 
-    <p class="fill-text" data-fill>I have come to realize that tall demands can only be fulfilled by capable people. Too often we sit with ideas instead of asking what we can actually make of them. Expectations keep rising, and I've made it my responsibility to meet them.</p>
+        <p class="fill-text" data-fill>I have come to realize that tall demands can only be fulfilled by capable people. Too often we sit with ideas instead of asking what we can actually make of them. Expectations keep rising, and I've made it my responsibility to meet them.</p>
 
-    <p class="fill-text" data-fill>18, designer and developer, Miami. Running Ocean Development, building websites for brands that refuse to settle for ordinary.</p>
+        <p class="fill-text" data-fill>18, designer and developer, Miami. Running Ocean Development, building websites for brands that refuse to settle for ordinary.</p>
 
-    <button class="about-cta" data-reveal onclick="window.location.href='#contact'">Let's Build Something</button>
+        <button class="about-cta" onclick="window.location.href='#contact'">Let's Build Something</button>
+      </div>
+
+      <div class="about-image" data-reveal>
+        <img src="/assets/about.png" alt="Jaden Medina hiking in Switzerland" />
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1279,8 +1634,15 @@
   <div class="project-card">
     <div class="wrap">
       <div class="project-card-inner" onclick="window.open('https://oceandev.net','_blank')" style="cursor:pointer;">
-        <h3 class="project-title">Ocean Development</h3>
-        <p class="project-subtitle">My website design agency. Ran by myself, Micah &amp; Raytumb.</p>
+        <div class="project-card-header">
+          <div>
+            <h3 class="project-title">Ocean Development</h3>
+            <p class="project-subtitle">My website design agency. Ran by myself, Micah &amp; Raytumb.</p>
+          </div>
+          <div class="project-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
         <div class="project-media">
           <img src="/assets/ocean-development.png" alt="Ocean Development project preview" />
         </div>
@@ -1291,8 +1653,15 @@
   <div class="project-card">
     <div class="wrap">
       <div class="project-card-inner" onclick="window.open('https://getcampusbite.com','_blank')" style="cursor:pointer;">
-        <h3 class="project-title">CampusBite</h3>
-        <p class="project-subtitle">AI meal planning built around your real dining hall menus. Know exactly what to eat, every day.</p>
+        <div class="project-card-header">
+          <div>
+            <h3 class="project-title">CampusBite</h3>
+            <p class="project-subtitle">AI meal planning built around your real dining hall menus. Know exactly what to eat, every day.</p>
+          </div>
+          <div class="project-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
         <div class="project-media">
           <img src="/assets/campusbite.png" alt="CampusBite project preview" />
         </div>
@@ -1303,8 +1672,15 @@
   <div class="project-card">
     <div class="wrap">
       <div class="project-card-inner" onclick="window.open('https://oceandev.net/projects','_blank')" style="cursor:pointer;">
-        <h3 class="project-title">MLS Global</h3>
-        <p class="project-subtitle">A worldwide real estate network offering seamless property discovery across diverse markets.</p>
+        <div class="project-card-header">
+          <div>
+            <h3 class="project-title">MLS Global</h3>
+            <p class="project-subtitle">A worldwide real estate network offering seamless property discovery across diverse markets.</p>
+          </div>
+          <div class="project-arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+        </div>
         <div class="project-media">
           <img src="/assets/mls-global.png" alt="MLS Global project preview" />
         </div>
