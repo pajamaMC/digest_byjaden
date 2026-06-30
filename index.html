@@ -6,8 +6,8 @@
 <title>Jaden Medina | Designing Success Stories</title>
 <meta name="description" content="18, designer and developer, Miami. Running Ocean Development, building websites for brands that refuse to settle for ordinary." />
 
-<link rel="icon" type="image/png" href="/assets/logo.png" />
-<link rel="apple-touch-icon" href="/assets/logo.png" />
+<link rel="icon" type="image/svg+xml" href="/assets/jadenmedinalogo.svg" />
+<link rel="apple-touch-icon" href="/assets/jadenmedinalogo.svg" />
 
 <meta property="og:title" content="Jaden Medina | Designing Success Stories" />
 <meta property="og:description" content="18, designer and developer, Miami. Running Ocean Development, building websites for brands that refuse to settle for ordinary." />
@@ -1062,26 +1062,66 @@
   /* ============================================================
      FOOTER
   ============================================================ */
-  footer { border-top: 1px solid var(--line); padding: 64px 0 40px; }
+  footer { border-top: 1px solid var(--line); padding: 72px 0 40px; }
 
-  .footer-top {
+  .footer-main {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    gap: 40px;
-    margin-bottom: 56px;
-    flex-wrap: wrap;
+    gap: 64px;
+    margin-bottom: 64px;
   }
 
-  .footer-brand { max-width: 320px; }
-  .footer-logo { height: 24px; width: auto; display: block; margin-bottom: 16px; }
-  .footer-tagline { font-size: 15px; line-height: 1.6; color: var(--muted); }
-  .footer-columns { display: flex; gap: 64px; }
-  .footer-col { display: flex; flex-direction: column; gap: 12px; }
-  .footer-col-title { font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .footer-left {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 20px;
+    max-width: 340px;
+  }
 
-  .footer-col a { font-size: 15px; color: var(--text); text-decoration: none; transition: opacity 0.2s ease; }
-  .footer-col a:hover { opacity: 0.55; }
+  .footer-logo {
+    height: 22px;
+    width: auto;
+    display: block;
+    filter: brightness(0);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .footer-left-text {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .footer-tagline { font-size: 15px; line-height: 1.6; color: var(--muted); }
+
+  .footer-agency-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 7px 12px;
+    width: fit-content;
+    transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .footer-agency-link:hover { background: var(--text); color: #fff; border-color: var(--text); }
+
+  .footer-right { display: flex; gap: 80px; }
+
+  .footer-col { display: flex; flex-direction: column; gap: 12px; }
+
+  .footer-col-title { font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+
+  .footer-col a { font-size: 14px; color: var(--text); text-decoration: none; transition: opacity 0.2s ease; }
+  .footer-col a:hover { opacity: 0.45; }
 
   .footer-bottom {
     display: flex;
@@ -1091,28 +1131,6 @@
     border-top: 1px solid var(--line);
     font-size: 13px;
     color: var(--muted);
-  }
-
-  .footer-socials { display: flex; gap: 16px; margin-top: 4px; }
-
-  .footer-socials a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    border: 1px solid var(--line);
-    color: var(--text);
-    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
-  }
-
-  .footer-socials a svg { width: 15px; height: 15px; }
-
-  .footer-socials a:hover {
-    background: var(--pill-bg);
-    color: var(--pill-text);
-    border-color: var(--pill-bg);
-    transform: translateY(-2px);
   }
 
   /* ============================================================
@@ -1175,9 +1193,10 @@
     .book-call-heading { font-size: 32px; }
     .form-row { grid-template-columns: 1fr; }
 
-    footer { padding: 48px 0 32px; }
-    .footer-top { flex-direction: column; gap: 32px; }
-    .footer-columns { gap: 40px; flex-wrap: wrap; }
+    footer { padding: 56px 0 32px; }
+    .footer-main { flex-direction: column; gap: 40px; margin-bottom: 40px; }
+    .footer-right { gap: 40px; flex-wrap: wrap; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 8px; }
   }
 </style>
 </head>
@@ -1535,37 +1554,39 @@
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img class="footer-logo" src="/assets/logo.png" alt="Jaden Medina logo" />
-        <p class="footer-tagline">Designing and building websites for brands that refuse to settle for ordinary.</p>
+    <div class="footer-main">
+      <div class="footer-left">
+        <img class="footer-logo" src="/assets/byjaden.svg" alt="Jaden Medina logo" />
+        <div class="footer-left-text">
+          <p class="footer-tagline">Web design &amp; development.<br>Miami, Florida.</p>
+          <a href="https://oceandev.net" target="_blank" rel="noopener" class="footer-agency-link">
+            Ocean Development
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="footer-columns">
+
+      <div class="footer-right">
         <div class="footer-col">
-          <span class="footer-col-title">Site</span>
+          <span class="footer-col-title">Navigate</span>
           <a href="#about">About</a>
           <a href="#work">Work</a>
           <a href="#process">Process</a>
           <a href="#pricing">Pricing</a>
           <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
         </div>
+
         <div class="footer-col">
           <span class="footer-col-title">Connect</span>
-          <a href="https://oceandev.net" target="_blank" rel="noopener">Ocean Development</a>
-          <div class="footer-socials">
-            <a href="mailto:jaden@oceandev.net" aria-label="Email">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M224,48H32a8,8,0,0,0-8,8V192a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A8,8,0,0,0,224,48Zm-8,16-80,65.69L56,64Zm-160,8.41,80,65.7L208,72.41V192H40Z"/></svg>
-            </a>
-            <a href="#" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z"/></svg>
-            </a>
-            <a href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" fill="currentColor"><path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84A12,12,0,1,1,88,72,12,12,0,0,1,100,84Z"/></svg>
-            </a>
-          </div>
+          <a href="mailto:jaden@oceandev.net">jaden@oceandev.net</a>
+          <a href="https://instagram.com/jadenbiz" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://oceandev.net" target="_blank" rel="noopener">oceandev.net</a>
         </div>
       </div>
     </div>
+
     <div class="footer-bottom">
       <span>&copy; 2026 Jaden Medina. All rights reserved.</span>
     </div>
